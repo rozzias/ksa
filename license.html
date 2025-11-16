@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weryfikacja licencji</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f0f16;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        input {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            width: 240px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Podaj klucz licencyjny</h2>
+    <input type="text" id="key" placeholder="Wpisz klucz..." />
+    <button onclick="checkLicense()">Zatwierdź</button>
+
+    <script>
+        // ==========================
+        //   USTAW SWOJE KLUCZE ↓↓↓
+        // ==========================
+        const validKeys = [
+            "ABC-123-XYZ",
+            "TEST-KEY-420",
+            "SKY-PRO-KEY"
+        ];
+
+        function checkLicense() {
+            const key = document.getElementById("key").value.trim();
+
+            if (validKeys.includes(key)) {
+                // zapis do localStorage aby nie musieli wpisywać drugi raz
+                localStorage.setItem("license_valid", "true");
+                window.location.href = "gen.html";
+            } else {
+                alert("❌ Niepoprawny klucz licencji!");
+            }
+        }
+    </script>
+
+</body>
+</html>
